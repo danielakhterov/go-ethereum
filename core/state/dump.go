@@ -20,11 +20,11 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/trie"
+	"github.com/danielakhterov/go-ethereum/common"
+	"github.com/danielakhterov/go-ethereum/common/hexutil"
+	"github.com/danielakhterov/go-ethereum/log"
+	"github.com/danielakhterov/go-ethereum/rlp"
+	"github.com/danielakhterov/go-ethereum/trie"
 )
 
 // DumpAccount represents an account in the state.

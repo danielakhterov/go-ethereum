@@ -23,16 +23,16 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/danielakhterov/go-ethereum/common"
+	"github.com/danielakhterov/go-ethereum/core"
+	"github.com/danielakhterov/go-ethereum/core/rawdb"
+	"github.com/danielakhterov/go-ethereum/core/state"
+	"github.com/danielakhterov/go-ethereum/core/types"
+	"github.com/danielakhterov/go-ethereum/ethdb"
+	"github.com/danielakhterov/go-ethereum/event"
+	"github.com/danielakhterov/go-ethereum/log"
+	"github.com/danielakhterov/go-ethereum/params"
+	"github.com/danielakhterov/go-ethereum/rlp"
 )
 
 const (

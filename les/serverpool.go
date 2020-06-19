@@ -24,15 +24,15 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common/mclock"
-	"github.com/ethereum/go-ethereum/ethdb"
-	lpc "github.com/ethereum/go-ethereum/les/lespay/client"
-	"github.com/ethereum/go-ethereum/les/utils"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/p2p/enode"
-	"github.com/ethereum/go-ethereum/p2p/enr"
-	"github.com/ethereum/go-ethereum/p2p/nodestate"
-	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/danielakhterov/go-ethereum/common/mclock"
+	"github.com/danielakhterov/go-ethereum/ethdb"
+	lpc "github.com/danielakhterov/go-ethereum/les/lespay/client"
+	"github.com/danielakhterov/go-ethereum/les/utils"
+	"github.com/danielakhterov/go-ethereum/log"
+	"github.com/danielakhterov/go-ethereum/p2p/enode"
+	"github.com/danielakhterov/go-ethereum/p2p/enr"
+	"github.com/danielakhterov/go-ethereum/p2p/nodestate"
+	"github.com/danielakhterov/go-ethereum/rlp"
 )
 
 const (

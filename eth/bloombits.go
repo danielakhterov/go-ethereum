@@ -20,13 +20,13 @@ import (
 	"context"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/bitutil"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/bloombits"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/ethdb"
+	"github.com/danielakhterov/go-ethereum/common"
+	"github.com/danielakhterov/go-ethereum/common/bitutil"
+	"github.com/danielakhterov/go-ethereum/core"
+	"github.com/danielakhterov/go-ethereum/core/bloombits"
+	"github.com/danielakhterov/go-ethereum/core/rawdb"
+	"github.com/danielakhterov/go-ethereum/core/types"
+	"github.com/danielakhterov/go-ethereum/ethdb"
 )
 
 const (

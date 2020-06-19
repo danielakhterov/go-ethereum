@@ -19,7 +19,7 @@ package vm
 import (
 	"fmt"
 
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/danielakhterov/go-ethereum/params"
 	"github.com/holiman/uint256"
 )
 

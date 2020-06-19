@@ -19,9 +19,9 @@ package whisperv6
 import (
 	"bytes"
 
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/whisper/whisperv6"
+	"github.com/danielakhterov/go-ethereum/crypto"
+	"github.com/danielakhterov/go-ethereum/rlp"
+	"github.com/danielakhterov/go-ethereum/whisper/whisperv6"
 )
 
 type MessageParams struct {
