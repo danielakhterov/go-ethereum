@@ -59,8 +59,8 @@ import (
 	"time"
 
 	"github.com/cespare/cp"
-	"github.com/ethereum/go-ethereum/internal/build"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/danielakhterov/go-ethereum/internal/build"
+	"github.com/danielakhterov/go-ethereum/params"
 )
 
 var (
