@@ -39,6 +39,7 @@ import (
 	"github.com/danielakhterov/go-ethereum/consensus"
 	"github.com/danielakhterov/go-ethereum/consensus/clique"
 	"github.com/danielakhterov/go-ethereum/consensus/ethash"
+	"github.com/danielakhterov/go-ethereum/consensus/hashgraph"
 	"github.com/danielakhterov/go-ethereum/core"
 	"github.com/danielakhterov/go-ethereum/core/vm"
 	"github.com/danielakhterov/go-ethereum/crypto"
@@ -1803,6 +1804,8 @@ func MakeChain(ctx *cli.Context, stack *node.Node, readOnly bool) (chain *core.B
 	var engine consensus.Engine
 	if config.Clique != nil {
 		engine = clique.New(config.Clique, chainDb)
+	} else if config.Hashgraph != nil {
+		engine = hashgraph.NewAPI(*config.Hashgraph)
 	} else {
 		engine = ethash.NewFaker()
 		if !ctx.GlobalBool(FakePoWFlag.Name) {
