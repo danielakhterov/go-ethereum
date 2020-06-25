@@ -1805,7 +1805,10 @@ func MakeChain(ctx *cli.Context, stack *node.Node, readOnly bool) (chain *core.B
 	if config.Clique != nil {
 		engine = clique.New(config.Clique, chainDb)
 	} else if config.Hashgraph != nil {
-		engine = hashgraph.NewAPI(*config.Hashgraph)
+		engine, err = hashgraph.NewAPI(*config.Hashgraph)
+		if err != nil {
+			Fatalf("%v", err)
+		}
 	} else {
 		engine = ethash.NewFaker()
 		if !ctx.GlobalBool(FakePoWFlag.Name) {

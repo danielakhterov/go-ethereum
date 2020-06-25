@@ -17,7 +17,9 @@
 package hashgraph
 
 import (
+	"errors"
 	"math/big"
+	"strconv"
 
 	"github.com/danielakhterov/go-ethereum/common"
 	"github.com/danielakhterov/go-ethereum/consensus"
@@ -31,18 +33,35 @@ import (
 // API is a user facing RPC API to allow controlling the signer and voting
 // mechanisms of the proof-of-authority scheme.
 type API struct {
-	client    *hedera.Client
-	submitKey hedera.Ed25519PublicKey
+	client  *hedera.Client
+	topicID hedera.ConsensusTopicID
+	maxFee  hedera.Hbar
 }
 
-func NewAPI(config params.HashgraphConfig) API {
+func NewAPI(config params.HashgraphConfig) (API, error) {
+	id, err := hedera.AccountIDFromString(config.OpeartorID)
+	if err != nil {
+		return API{}, err
+	}
+
+	key, err := hedera.Ed25519PrivateKeyFromString(config.OperatorKey)
+	if err != nil {
+		return API{}, err
+	}
+
+	topicID, err := hedera.TopicIDFromString(config.TopicID)
+	if err != nil {
+		return API{}, err
+	}
+
 	client := hedera.ClientForTestnet().
-		SetOperator(config.OpeartorId, config.OperatorKey)
+		SetOperator(id, key)
 
 	return API{
-		client:    client,
-		submitKey: config.SubmitKey,
-	}
+		client:  client,
+		topicID: topicID,
+		maxFee:  hedera.HbarFromTinybar(config.MaxFee),
+	}, nil
 }
 
 // Author retrieves the Ethereum address of the account that minted the given
@@ -111,6 +130,37 @@ func (api API) FinalizeAndAssemble(chain consensus.ChainReader, header *types.He
 // Note, the method returns immediately and will send the result async. More
 // than one result may also be returned depending on the consensus algorithm.
 func (api API) Seal(chain consensus.ChainReader, block *types.Block, results chan<- *types.Block, stop <-chan struct{}) error {
+	count := len(block.Transactions())
+	for i, tx := range block.Transactions() {
+		json, err := tx.MarshalJSON()
+		if err != nil {
+			return err
+		}
+
+		if len(json) > 4000 {
+			return errors.New("unimplemetned")
+		}
+
+		memo := strconv.Itoa(i) + " " + strconv.Itoa(count) + " " + block.Hash().Hex()
+
+		txID, err := hedera.NewConsensusMessageSubmitTransaction().
+			SetMessage(json).
+			SetTopicID(api.topicID).
+			SetTransactionMemo(memo).
+			SetMaxTransactionFee(api.maxFee).
+			Execute(api.client)
+		if err != nil {
+			return err
+		}
+
+		receipt, err := txID.GetReceipt(api.client)
+		if err != nil {
+			return err
+		}
+
+		print(receipt.GetConsensusTopicID().String())
+	}
+
 	return nil
 }
 

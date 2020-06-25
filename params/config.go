@@ -23,7 +23,6 @@ import (
 
 	"github.com/danielakhterov/go-ethereum/common"
 	"github.com/danielakhterov/go-ethereum/crypto"
-	"github.com/hashgraph/hedera-sdk-go"
 )
 
 // Genesis hashes to enforce below configs on.
@@ -351,9 +350,10 @@ func (c *CliqueConfig) String() string {
 
 // HashgraphConfig is the consensus engine configs for the Hedera Hashgraph based consensus
 type HashgraphConfig struct {
-	OperatorKey hedera.Ed25519PrivateKey `json:"operatorKey"` // Private key used to pay for consensus messages
-	OpeartorId  hedera.AccountID         `json:"operatorId"`  // Account ID used to pay for consensus messages
-	SubmitKey   hedera.Ed25519PublicKey  `json:"submitKey"`   // Public key used to when submitting consensus messages to the Hedera Hashgraph Network
+	OperatorKey string `json:"operatorKey"` // Private key used to pay for consensus messages
+	OpeartorID  string `json:"operatorId"`  // Account ID used to pay for consensus messages
+	TopicID     string `json:"submitKey"`   // Topic ID to submit messages to
+	MaxFee      int64  `json:"maxFee"`
 }
 
 // String implements the stringer interface, returning the consensus engine details.
